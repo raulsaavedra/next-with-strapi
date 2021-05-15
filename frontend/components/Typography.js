@@ -28,4 +28,8 @@ export const Span = styled.span`
   ${color}
   ${typography}
   ${space}
+  ${HeadingPrimary}:hover & {
+    color: ${({ theme }) => theme.colors.greenDark};
+  }
+  transition: all 0.4s ease;
 `;

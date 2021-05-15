@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from '../../components/Container';
+import { Container } from '../../components/styles/Container';
 import client from '../../src/client';
 
 export default function Article({ article }) {

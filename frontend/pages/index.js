@@ -1,9 +1,6 @@
 import { gql } from '@apollo/client';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import styled from 'styled-components';
-import media from 'styled-media-query';
+
 import client from '../src/client';
 import {
   CardTitle,
@@ -11,53 +8,21 @@ import {
   Paragraph,
   Span,
 } from '../components/Typography';
-import { Container } from '../components/Container';
+import { Container } from '../components/styles/Container';
+import { Card, CardImage, CardList, Hero } from '../components/styles/General';
 
-const Hero = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  > * {
-    grid-column: 2;
-  }
-  margin-top: 4rem;
-  margin-bottom: 6rem;
-
-  ${media.lessThan('large')`
-   grid-template-columns: 1fr;
-  `}
-`;
-
-const CardList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(34rem, 100%), 1fr));
-  gap: 4rem;
-`;
-const Card = styled.div`
-  display: grid;
-  gap: 1rem;
-  cursor: pointer;
-`;
-const CardImage = styled.div`
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  img {
-    border-radius: 2rem;
-    width: 100%;
-  }
-`;
 export default function Home({ articles }) {
   console.log(articles);
   return (
     <Container>
       <Hero>
         <HeadingPrimary
-          color="primary"
+          color="blueLight"
           fontWeight="700"
           textAlign="center"
           marginBottom="3"
         >
-          The Next with <Span color="secondary">Strapi Blog</Span>
+          The Next with <Span color="blueDark">Strapi Blog</Span>
         </HeadingPrimary>
         <Paragraph color="grayPrimary" textAlign="center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum

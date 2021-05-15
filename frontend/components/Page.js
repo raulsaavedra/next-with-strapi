@@ -32,10 +32,15 @@ const GlobalStyles = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: '#0267D5',
-    secondary: '#284180',
+    blueLight: '#0267D5',
+    blueDark: '#284180',
+    greenLight: '#D5FEF0',
+    greenDark: '#6FA995',
     black: '#1F2839',
     grayPrimary: '#AFAFB1',
+  },
+  boxShadow: {
+    normal: '0px 28px 25px -10px rgba(0, 0, 0, 0.15)',
   },
 };
 export default function Page({ children }) {
