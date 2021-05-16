@@ -13,8 +13,6 @@ import { Container } from '../components/styles/Container';
 import { Card, CardImage, CardList, Hero } from '../components/styles/General';
 
 export default function Home({ articles }) {
-  console.log(articles);
-  console.log(process.env.NEXT_PUBLIC_API_URL);
   return (
     <Container>
       <Hero>
