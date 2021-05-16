@@ -38,6 +38,7 @@ export default function Home({ articles }) {
               <CardImage>
                 <Image
                   layout="fill"
+                  objectFit="cover"
                   src={`${process.env.NEXT_PUBLIC_API_URL}${article.thumbnail[0].url}`}
                 />
               </CardImage>

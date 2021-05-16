@@ -22,10 +22,11 @@ export default function Article({ article, content }) {
         <ArticleImageContainer marginBottom="5">
           <Image
             layout="fill"
+            objectFit="cover"
             src={`${process.env.NEXT_PUBLIC_API_URL}${article.thumbnail[0].url}`}
           />
         </ArticleImageContainer>
-        <HeadingPrimary>{article.title}</HeadingPrimary>
+        <HeadingPrimary marginBottom="3">{article.title}</HeadingPrimary>
         <Paragraph>{article.description}</Paragraph>
         <ContentWrapper>
           <MDXRemote {...content} />

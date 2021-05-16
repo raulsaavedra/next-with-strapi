@@ -50,14 +50,18 @@ export const CardImage = styled.div`
 `;
 
 export const ArticleImageContainer = styled.div`
-  width: 55%;
+  width: 100%;
   margin: 0 auto;
-  height: 45vh;
+  height: 55vh;
   margin-bottom: 2rem;
   border-radius: 2.5rem;
   overflow: hidden;
   transition: all 0.4s ease;
   position: relative;
+  ${media.lessThan('large')`
+    width: 100%;
+    height: 45vh;
+  `};
   img {
     width: 100%;
     border-radius: 2.5rem;
