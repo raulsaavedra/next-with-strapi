@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import Image from 'next/image';
+
 import { Container } from '../../components/styles/Container';
 import client from '../../src/client';
 import { HeadingPrimary, Paragraph } from '../../components/Typography';
