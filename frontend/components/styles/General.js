@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
+import { space } from 'styled-system';
+
 export const Hero = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -27,13 +29,14 @@ export const Card = styled.div`
 `;
 export const CardImage = styled.div`
   width: 100%;
+  height: 27.5rem;
   margin-bottom: 2rem;
   border-radius: 2.5rem;
   overflow: hidden;
   transition: all 0.4s ease;
+  position: relative;
   img {
     width: 100%;
-    height: 100%;
     border-radius: 2.5rem;
     transition: all 0.4s ease;
   }
@@ -44,4 +47,28 @@ export const CardImage = styled.div`
       transform-origin: 50% 50%;
     }
   }
+`;
+
+export const ArticleImageContainer = styled.div`
+  width: 55%;
+  margin: 0 auto;
+  height: 45vh;
+  margin-bottom: 2rem;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  position: relative;
+  img {
+    width: 100%;
+    border-radius: 2.5rem;
+    transition: all 0.4s ease;
+  }
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow.normal};
+    img {
+      transform: scale(1.1);
+      transform-origin: 50% 50%;
+    }
+  }
+  ${space}
 `;

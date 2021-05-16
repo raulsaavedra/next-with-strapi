@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import Link from 'next/link';
 
+import Image from 'next/image';
 import client from '../src/client';
 import {
   CardTitle,
@@ -13,6 +14,7 @@ import { Card, CardImage, CardList, Hero } from '../components/styles/General';
 
 export default function Home({ articles }) {
   console.log(articles);
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   return (
     <Container>
       <Hero>
@@ -31,10 +33,13 @@ export default function Home({ articles }) {
       </Hero>
       <CardList>
         {articles.map((article) => (
-          <Link key={article.id} href={`/article/${article.id}`}>
+          <Link key={article.id} href={`/article/${article.slug}`}>
             <Card>
               <CardImage>
-                <img src={`http://localhost:1337${article.thumbnail[0].url}`} />
+                <Image
+                  layout="fill"
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${article.thumbnail[0].url}`}
+                />
               </CardImage>
               <CardTitle color="black">{article.title}</CardTitle>
               <Paragraph color="grayPrimary">{article.description}</Paragraph>
@@ -53,6 +58,7 @@ export async function getStaticProps() {
         articles {
           id
           title
+          slug
           description
           thumbnail {
             url
