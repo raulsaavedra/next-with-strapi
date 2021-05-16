@@ -16,7 +16,8 @@
       "type": "string",
       "pluginOptions": {},
       "private": false,
-      "required": true
+      "required": true,
+      "unique": true
     },
     "description": {
       "pluginOptions": {},
@@ -38,6 +39,10 @@
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
+    },
+    "slug": {
+      "type": "string",
+      "unique": true
     }
   }
 }
