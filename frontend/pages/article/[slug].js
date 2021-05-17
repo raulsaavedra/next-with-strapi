@@ -37,27 +37,40 @@ export default function Article({ article, content }) {
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   // Call an external API endpoint to get posts
 
-  const { data } = await client.query({
-    query: gql`
-      query {
-        articles {
-          slug
-        }
-      }
-    `,
-  });
+  const resultsPerLocale = await Promise.all(
+    locales.map(async (locale) => {
+      const { data } = await client.query({
+        variables: {
+          locale,
+        },
+        query: gql`
+          query($locale: String!) {
+            articles(locale: $locale) {
+              slug
+              locale
+            }
+          }
+        `,
+      });
 
-  // Get the paths we want to pre-render based on posts
-  const paths = data.articles.map((item) => ({
-    params: { slug: item.slug },
-  }));
+      // Get the paths we want to pre-render based on posts
+      const paths = data.articles.map((item) => ({
+        params: { slug: item.slug },
+        locale: item.locale,
+      }));
+      return paths;
+    })
+  );
+  const results = resultsPerLocale.reduce(function (arr, e) {
+    return arr.concat(e);
+  });
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
+  return { paths: results, fallback: false };
 }
 
 export async function getStaticProps({ params }) {

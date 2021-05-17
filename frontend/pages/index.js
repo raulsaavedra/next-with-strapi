@@ -31,7 +31,11 @@ export default function Home({ articles }) {
       </Hero>
       <CardList>
         {articles.map((article) => (
-          <Link key={article.id} href={`/article/${article.slug}`}>
+          <Link
+            key={article.id}
+            href={`/article/${article.slug}`}
+            locale={article.locale}
+          >
             <Card>
               <CardImage>
                 <Image
@@ -50,11 +54,14 @@ export default function Home({ articles }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const { data } = await client.query({
+    variables: {
+      locale,
+    },
     query: gql`
-      query {
-        articles {
+      query($locale: String!) {
+        articles(locale: $locale) {
           id
           title
           slug
@@ -62,6 +69,7 @@ export async function getStaticProps() {
           thumbnail {
             url
           }
+          locale
         }
       }
     `,

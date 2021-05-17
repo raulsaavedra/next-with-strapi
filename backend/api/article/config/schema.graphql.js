@@ -11,8 +11,10 @@ module.exports = {
         resolverOf: 'Article.findOne', 
         resolver: async (obj, {slug}, ctx) => {
           // ctx is the context of the Koa request.
-          const entity = await strapi.services.article.findOne({slug})
+          
+          const entity = await strapi.query('article').findOne({slug})
 
+          console.log(entity)
           return sanitizeEntity(entity, { model: strapi.models.article });
         }
       },
