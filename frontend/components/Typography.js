@@ -23,6 +23,13 @@ export const Paragraph = styled.p`
   ${typography}
   ${space}
 `;
+export const ButtonText = styled.p`
+  font-size: 1.8rem;
+  line-height: 1.5;
+  ${color}
+  ${typography}
+  ${space}
+`;
 
 export const Span = styled.span`
   ${color}

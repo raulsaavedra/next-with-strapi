@@ -1,5 +1,5 @@
-import { gql } from '@apollo/client';
-import React from 'react';
+import { gql, useMutation } from '@apollo/client';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
@@ -7,8 +7,13 @@ import Image from 'next/image';
 
 import { Container } from '../../components/styles/Container';
 import client from '../../src/client';
-import { HeadingPrimary, Paragraph } from '../../components/Typography';
-import { ArticleImageContainer } from '../../components/styles/General';
+import {
+  ButtonText,
+  HeadingPrimary,
+  Paragraph,
+} from '../../components/Typography';
+import { SArticleImageContainer } from '../../components/styles/Article';
+import { SButton } from '../../components/styles/Button';
 
 const ArticleWrapper = styled.div`
   margin: 4rem 0rem;
@@ -16,19 +21,39 @@ const ArticleWrapper = styled.div`
 const ContentWrapper = styled.div`
   margin: 4rem 0rem;
 `;
+const UPDATE_LIKES = gql`
+  mutation UPDATE_LIKES($slug: String!) {
+    increaseLikes(slug: $slug) {
+      likes
+    }
+  }
+`;
 export default function Article({ article, content }) {
+  const [updateLikes, { data, loading, error }] = useMutation(UPDATE_LIKES, {
+    variables: {
+      slug: article.slug,
+    },
+  });
+  const [likes, setLikes] = useState(article.likes);
+  const handleLikes = async () => {
+    const res = await updateLikes();
+    setLikes(res?.data?.increaseLikes?.likes);
+  };
   return (
     <Container>
       <ArticleWrapper>
-        <ArticleImageContainer marginBottom="5">
+        <SArticleImageContainer marginBottom="5">
           <Image
             layout="fill"
             objectFit="cover"
             src={`${process.env.NEXT_PUBLIC_API_URL}${article.thumbnail[0].url}`}
           />
-        </ArticleImageContainer>
+        </SArticleImageContainer>
         <HeadingPrimary marginBottom="3">{article.title}</HeadingPrimary>
-        <Paragraph>{article.description}</Paragraph>
+        <Paragraph marginBottom="3">{article.description}</Paragraph>
+        <SButton onClick={() => handleLikes()}>
+          <ButtonText fontWeight="bold">Likes: {likes || 0}</ButtonText>
+        </SButton>
         <ContentWrapper>
           <MDXRemote {...content} />
         </ContentWrapper>
@@ -84,6 +109,7 @@ export async function getStaticProps({ params }) {
           title
           description
           content
+          likes
           thumbnail {
             url
           }
@@ -99,5 +125,6 @@ export async function getStaticProps({ params }) {
       article: data.articleBySlug,
       content: mdxSource,
     },
+    revalidate: 20,
   };
 }

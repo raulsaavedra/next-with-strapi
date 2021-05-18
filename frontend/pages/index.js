@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import Link from 'next/link';
 
 import Image from 'next/image';
@@ -10,12 +10,17 @@ import {
   Span,
 } from '../components/Typography';
 import { Container } from '../components/styles/Container';
-import { Card, CardImage, CardList, Hero } from '../components/styles/General';
+import {
+  SCard,
+  SCardImage,
+  SCardList,
+  SHero,
+} from '../components/styles/General';
 
 export default function Home({ articles }) {
   return (
     <Container>
-      <Hero>
+      <SHero>
         <HeadingPrimary
           color="blueLight"
           fontWeight="700"
@@ -28,28 +33,28 @@ export default function Home({ articles }) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
           dolor sit amet.
         </Paragraph>
-      </Hero>
-      <CardList>
+      </SHero>
+      <SCardList>
         {articles.map((article) => (
           <Link
             key={article.id}
             href={`/article/${article.slug}`}
             locale={article.locale}
           >
-            <Card>
-              <CardImage>
+            <SCard>
+              <SCardImage>
                 <Image
                   layout="fill"
                   objectFit="cover"
                   src={`${process.env.NEXT_PUBLIC_API_URL}${article.thumbnail[0].url}`}
                 />
-              </CardImage>
+              </SCardImage>
               <CardTitle color="black">{article.title}</CardTitle>
               <Paragraph color="grayPrimary">{article.description}</Paragraph>
-            </Card>
+            </SCard>
           </Link>
         ))}
-      </CardList>
+      </SCardList>
     </Container>
   );
 }
