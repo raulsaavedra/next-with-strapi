@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { space } from 'styled-system';
 
 export const fullBleed = styled.div``;
 export const Container = styled.div`
@@ -15,4 +16,11 @@ export const Container = styled.div`
     width: 100%;
     grid-column: 1 / 4;
   }
+  ${space}
+`;
+
+export const Centered = styled.div`
+  display: grid;
+  justify-content: center;
+  ${space}
 `;

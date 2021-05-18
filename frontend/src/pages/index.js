@@ -2,24 +2,35 @@ import { gql, useMutation } from '@apollo/client';
 import Link from 'next/link';
 
 import Image from 'next/image';
-import client from '../src/client';
+import { useRouter } from 'next/router';
+import client from '../lib/client';
 import {
   CardTitle,
   HeadingPrimary,
   Paragraph,
   Span,
-} from '../components/Typography';
-import { Container } from '../components/styles/Container';
-import {
-  SCard,
-  SCardImage,
-  SCardList,
-  SHero,
-} from '../components/styles/General';
+  LinkText,
+} from '../components/styles/base/Typography';
+import { Centered, Container } from '../components/styles/base/Layout';
+import { SCard, SCardImage, SCardList } from '../components/styles/Card';
+import { SHero } from '../components/styles/Hero';
+import { SButton } from '../components/styles/Button';
 
 export default function Home({ articles }) {
+  const router = useRouter();
+  const { locales } = router;
   return (
     <Container>
+      <Centered marginTop="2">
+        {locales &&
+          locales.map((locale, index) => (
+            <Link key={`${locale}${index}`} href="/" locale={locale} passHref>
+              <LinkText color="blueLight" fontWeight="bold">
+                {locale}
+              </LinkText>
+            </Link>
+          ))}
+      </Centered>
       <SHero>
         <HeadingPrimary
           color="blueLight"

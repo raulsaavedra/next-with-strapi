@@ -23,6 +23,17 @@ export const Paragraph = styled.p`
   ${typography}
   ${space}
 `;
+export const LinkText = styled.a`
+  font-size: 1.8rem;
+  line-height: 1.5;
+  transition: all 0.6s ease;
+  &:hover {
+    color: ${({ theme }) => theme.colors.greenDark};
+  }
+  ${color}
+  ${typography}
+  ${space}
+`;
 export const ButtonText = styled.p`
   font-size: 1.8rem;
   line-height: 1.5;

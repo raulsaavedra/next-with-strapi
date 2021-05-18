@@ -5,13 +5,13 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import Image from 'next/image';
 
-import { Container } from '../../components/styles/Container';
-import client from '../../src/client';
+import { Container } from '../../components/styles/base/Layout';
+import client from '../../lib/client';
 import {
   ButtonText,
   HeadingPrimary,
   Paragraph,
-} from '../../components/Typography';
+} from '../../components/styles/base/Typography';
 import { SArticleImageContainer } from '../../components/styles/Article';
 import { SButton } from '../../components/styles/Button';
 
