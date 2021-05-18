@@ -15,7 +15,7 @@ export const SCard = styled.div`
 `;
 export const SCardImage = styled.div`
   width: 100%;
-  height: 27.5rem;
+  height: 27vh;
   margin-bottom: 2rem;
   border-radius: 2.5rem;
   overflow: hidden;
