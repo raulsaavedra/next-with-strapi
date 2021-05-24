@@ -51,7 +51,7 @@ export default function Article({ article, content }) {
         </SArticleImageContainer>
         <HeadingPrimary marginBottom="3">{article.title}</HeadingPrimary>
         <Paragraph marginBottom="3">{article.description}</Paragraph>
-        <SButton onClick={() => handleLikes()}>
+        <SButton disabled={loading} onClick={() => handleLikes()}>
           <ButtonText fontWeight="bold">Likes: {likes || 0}</ButtonText>
         </SButton>
         <ContentWrapper>

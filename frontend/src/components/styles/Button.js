@@ -32,4 +32,8 @@ export const SButton = styled.button`
       opacity: 1;
     }
   }
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 `;
