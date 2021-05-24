@@ -36,8 +36,8 @@ export default function Article({ article, content }) {
   });
   const [likes, setLikes] = useState(article.likes);
   const handleLikes = async () => {
-    const res = await updateLikes();
-    setLikes(res?.data?.increaseLikes?.likes);
+    await updateLikes();
+    setLikes(likes + 1);
   };
   return (
     <Container>
