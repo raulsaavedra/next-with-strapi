@@ -15,21 +15,15 @@ import { Centered, Container } from '../components/styles/base/Layout';
 import { SCard, SCardImage, SCardList } from '../components/styles/Card';
 import { SHero } from '../components/styles/Hero';
 import { SButton } from '../components/styles/Button';
+import ListboxComponent from '../components/Listbox';
 
 export default function Home({ articles }) {
   const router = useRouter();
   const { locales } = router;
   return (
     <Container>
-      <Centered marginTop="2">
-        {locales &&
-          locales.map((locale, index) => (
-            <Link key={`${locale}${index}`} href="/" locale={locale} passHref>
-              <LinkText color="blueLight" fontWeight="bold">
-                {locale}
-              </LinkText>
-            </Link>
-          ))}
+      <Centered marginTop="4">
+        <ListboxComponent data={locales} navigation />
       </Centered>
       <SHero>
         <HeadingPrimary
