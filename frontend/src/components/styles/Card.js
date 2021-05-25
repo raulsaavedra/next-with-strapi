@@ -6,6 +6,7 @@ import { space } from 'styled-system';
 export const SCardList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(34rem, 100%), 1fr));
+  align-items: flex-start;
   gap: 4rem;
 `;
 export const SCard = styled.div`
