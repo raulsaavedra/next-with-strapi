@@ -28,6 +28,7 @@ export const SButton = styled.button`
   }
   &:focus,
   &:hover {
+    background: ${({ theme }) => theme.colors.greenDark};
     &::before {
       opacity: 1;
     }
