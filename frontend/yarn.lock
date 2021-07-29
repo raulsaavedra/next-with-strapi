@@ -725,7 +725,7 @@ babel-plugin-extract-import-names@1.6.22:
   dependencies:
     "@babel/helper-plugin-utils" "7.10.4"
 
-"babel-plugin-styled-components@>= 1.12.0", babel-plugin-styled-components@^1.12.0:
+"babel-plugin-styled-components@>= 1.12.0", babel-plugin-styled-components@^1.8.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.12.0.tgz#1dec1676512177de6b827211e9eda5a30db4f9b9"
   integrity sha512-FEiD7l5ZABdJPpLssKXjBUJMYqzbcNzBowfXDCdJhOpbhWiewapUaY+LZGT8R4Jg2TwOjGjG4RKeyrO5p9sBkA==
@@ -2377,6 +2377,11 @@ react-dom@17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-hook-form@^7.6.7:
+  version "7.6.7"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.6.7.tgz#77f1b47ebf072e222d11707bb14750498f471d40"
+  integrity sha512-HzYgmUyWdhQRYEuKHOWybVF/anM9s2sPVIoskUvGdMjJaIBOiFIhNVNZuBMSg81LN7tt9Z4A/jFwbMi/kmaZ5A==
 
 react-is@16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"

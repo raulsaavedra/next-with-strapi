@@ -11,6 +11,7 @@ export default function useTheme() {
       grayPrimary: '#AFAFB1',
     },
     boxShadow: {
+      light: '0px 10px 15px 0px rgba(0, 0, 0, 0.10)',
       normal: '0px 28px 25px -10px rgba(0, 0, 0, 0.15)',
       buttonBlue: '0px 28px 25px -10px rgba(2, 103, 213, 0.15)',
     },

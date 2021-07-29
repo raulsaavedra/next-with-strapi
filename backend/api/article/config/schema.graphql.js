@@ -5,7 +5,7 @@ module.exports = {
     articleBySlug(slug: String!): Article
   `,
   mutation: `
-    increaseLikes(slug: String!): Article
+    increaseLikes(id: ID!): Article
   `,
   resolver: {
     Query: {
@@ -25,12 +25,12 @@ module.exports = {
       increaseLikes: {
         description: 'Increase article likes',
         resolverOf: 'Article.update',
-         resolver: async (obj, {slug}, ctx) => {
+         resolver: async (obj, {id}, ctx) => {
           // ctx is the context of the Koa request.
           
-          const entity = await strapi.query('article').findOne({slug})
+          const entity = await strapi.query('article').findOne({id})
           const entityLikes = entity.likes;
-          const newEntity = await strapi.query('article').update({ slug }, { ...entity, likes: parseInt(entityLikes || 0) + 1 })
+          const newEntity = await strapi.query('article').update({ id }, { ...entity, likes: parseInt(entityLikes || 0) + 1 })
           return sanitizeEntity(newEntity, { model: strapi.models.article });
         }
       }

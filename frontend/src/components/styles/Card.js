@@ -9,6 +9,7 @@ export const SCardList = styled.div`
   align-items: flex-start;
   gap: 4rem;
 `;
+
 export const SCard = styled.div`
   display: grid;
   gap: 1rem;

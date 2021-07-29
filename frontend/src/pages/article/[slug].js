@@ -5,15 +5,21 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import Image from 'next/image';
 
+import { useForm } from 'react-hook-form';
+import { SForm, SFormGroup } from '../../components/styles/base/Form';
 import { Container } from '../../components/styles/base/Layout';
 import client from '../../lib/client';
 import {
   ButtonText,
+  CardTitle,
+  CardTitleSmall,
   HeadingPrimary,
+  HeadingSecondary,
   Paragraph,
 } from '../../components/styles/base/Typography';
 import { SArticleImageContainer } from '../../components/styles/Article';
 import { SButton } from '../../components/styles/Button';
+import Comments from '../../components/Comments';
 
 const ArticleWrapper = styled.div`
   margin: 4rem 0rem;
@@ -22,22 +28,48 @@ const ContentWrapper = styled.div`
   margin: 4rem 0rem;
 `;
 const UPDATE_LIKES = gql`
-  mutation UPDATE_LIKES($slug: String!) {
-    increaseLikes(slug: $slug) {
+  mutation UPDATE_LIKES($id: ID!) {
+    increaseLikes(id: $id) {
       likes
     }
   }
 `;
+const CREATE_COMMENT = gql`
+  mutation CREATE_COMMENT($article: ID!, $title: String!, $comment: String!) {
+    createComment(
+      input: { data: { article: $article, title: $title, comment: $comment } }
+    ) {
+      comment {
+        title
+        comment
+      }
+    }
+  }
+`;
 export default function Article({ article, content }) {
-  const [updateLikes, { data, loading, error }] = useMutation(UPDATE_LIKES, {
+  const [updateLikes, { loadingUpdateLikes }] = useMutation(UPDATE_LIKES, {
     variables: {
-      slug: article.slug,
+      id: article.id,
     },
   });
+  const [createComment, { loading: loadingCreateComment }] = useMutation(
+    CREATE_COMMENT,
+    {
+      variables: {
+        article: 1,
+        title: 'Hola',
+        comment: 'Hola a todos',
+      },
+    }
+  );
   const [likes, setLikes] = useState(article.likes);
-  const handleLikes = async () => {
+  const handleUpdateLikes = async () => {
     await updateLikes();
     setLikes(likes + 1);
+  };
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
   };
   return (
     <Container>
@@ -51,7 +83,10 @@ export default function Article({ article, content }) {
         </SArticleImageContainer>
         <HeadingPrimary marginBottom="3">{article.title}</HeadingPrimary>
         <Paragraph marginBottom="3">{article.description}</Paragraph>
-        <SButton disabled={loading} onClick={() => handleLikes()}>
+        <SButton
+          disabled={loadingUpdateLikes}
+          onClick={() => handleUpdateLikes()}
+        >
           <ButtonText fontWeight="bold">Likes: {likes || 0}</ButtonText>
         </SButton>
         <ContentWrapper>
@@ -106,10 +141,16 @@ export async function getStaticProps({ params }) {
     query: gql`
       query($slug: String!) {
         articleBySlug(slug: $slug) {
+          id
           title
           description
           content
           likes
+          comments {
+            id
+            title
+            comment
+          }
           thumbnail {
             url
           }
