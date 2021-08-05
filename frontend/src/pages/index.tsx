@@ -16,25 +16,25 @@ import { SCard, SCardImage, SCardList } from '../components/styles/Card';
 import { SHero } from '../components/styles/Hero';
 import { SButton } from '../components/styles/Button';
 import ListboxComponent from '../components/Listbox';
+import { Article } from '../lib/types/types';
 
-export default function Home({ articles }) {
+interface IProps {
+  articles: Article[];
+}
+
+export default function Home({ articles }: IProps) {
   const router = useRouter();
   const { locales } = router;
   return (
     <Container>
-      <Centered marginTop="4">
+      <Centered marginTop="30">
         <ListboxComponent data={locales} navigation />
       </Centered>
       <SHero>
-        <HeadingPrimary
-          color="blueLight"
-          fontWeight="700"
-          textAlign="center"
-          marginBottom="3"
-        >
+        <HeadingPrimary color="blueLight" fontWeight="700" marginBottom="10">
           The Next with <Span color="blueDark">Strapi Blog</Span>
         </HeadingPrimary>
-        <Paragraph color="grayPrimary" textAlign="center">
+        <Paragraph color="grayPrimary">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
           dolor sit amet.
         </Paragraph>
@@ -64,7 +64,7 @@ export default function Home({ articles }) {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }: { locale: string }) {
   const { data } = await client.query({
     variables: {
       locale,

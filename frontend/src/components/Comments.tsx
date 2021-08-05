@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { space } from 'styled-system';
 import {
   CardTitle,
   CardTitleSmall,
@@ -12,7 +11,6 @@ const SCommentListWrapper = styled.div`
   display: grid;
   gap: 1rem;
   color: white;
-  ${space}
 `;
 const SCommentList = styled.div`
   display: grid;
@@ -28,7 +26,7 @@ const SComment = styled.div`
 export default function Comments({ data, marginTop, marginBottom }) {
   return (
     <SCommentListWrapper marginTop={marginTop} marginBottom={marginBottom}>
-      <HeadingSecondary color="blueLight" marginBottom="3">
+      <HeadingSecondary color="blueLight" marginBottom="10">
         Comments 💬
       </HeadingSecondary>
       <SCommentList>

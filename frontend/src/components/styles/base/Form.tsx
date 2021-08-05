@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { space } from 'styled-system';
 
 export const SForm = styled.form`
   display: grid;
@@ -17,7 +16,6 @@ export const SForm = styled.form`
       outline: 0;
     }
   }
-  ${space}
 `;
 
 export const SFormGroup = styled.div`

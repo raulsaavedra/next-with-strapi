@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import media from 'styled-media-query';
-import { space } from 'styled-system';
+import { margin } from './base/Utilities';
 
 export const SButton = styled.button`
   background: ${({ theme }) => theme.colors.blueLight};
@@ -8,9 +7,10 @@ export const SButton = styled.button`
   color: white;
   padding: 1rem 2rem;
   border-radius: 1.25rem;
-  ${space}
   position: relative;
   transition: all 0.4s ease;
+
+  ${margin}
 
   &::before {
     content: '';

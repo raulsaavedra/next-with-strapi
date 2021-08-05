@@ -81,8 +81,8 @@ export default function Article({ article, content }) {
             src={`${process.env.NEXT_PUBLIC_API_URL}${article.thumbnail[0].url}`}
           />
         </SArticleImageContainer>
-        <HeadingPrimary marginBottom="3">{article.title}</HeadingPrimary>
-        <Paragraph marginBottom="3">{article.description}</Paragraph>
+        <HeadingPrimary marginBottom="10">{article.title}</HeadingPrimary>
+        <Paragraph marginBottom="15">{article.description}</Paragraph>
         <SButton
           disabled={loadingUpdateLikes}
           onClick={() => handleUpdateLikes()}

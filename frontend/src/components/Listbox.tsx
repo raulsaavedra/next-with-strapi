@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Listbox, ListboxOption } from '@reach/listbox';
 import '@reach/listbox/styles.css';
 import styled from 'styled-components';
-import { space } from 'styled-system';
 import { useRouter } from 'next/router';
 
 const SListbox = styled(Listbox)`
@@ -12,7 +11,6 @@ const SListbox = styled(Listbox)`
     margin-left: 1rem;
     color: ${({ theme }) => theme.colors.blueDark};
   }
-  ${space}
 `;
 const SListboxOption = styled(ListboxOption)`
   font-size: 1.6rem;

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-import { space } from 'styled-system';
-
 export const SHero = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
